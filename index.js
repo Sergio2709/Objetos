@@ -1,35 +1,18 @@
 import {CuentaCorriente} from'./cuenta.js';
 import { Cliente } from './cliente.js';
 
-const cliente1 = new Cliente();
-cliente1.nombreCliente = "Sergio Castillo";
-cliente1.tipoDocumentoCliente = "CC";
-cliente1.documentoCliente = "1192782850";
-cliente1.telefonoCliente = "3203814542";
-cliente1.correoCliente = "sergioicc@hotmail.com"
+const cliente1 = new Cliente("Sergio Castillo", "CC", "1192782850", "3203814542", "sergioicc@hotmail.com");
+const cuentaSergio = new CuentaCorriente(cliente1, "123456", "001");
 
-const cuentaSergio = new CuentaCorriente();
-cuentaSergio.numeroCuenta = "123456"
-cuentaSergio.agencia = "001"
-cuentaSergio.cliente = cliente1;
 cuentaSergio.depositoCuenta(2000);
-cuentaSergio.retiroCuenta(1000);
-console.log(cuentaSergio);
+console.log(cuentaSergio.cliente)
 
-const cliente2 = new Cliente();
-cliente2.nombreCliente = "Sofia Lozano";
-cliente2.tipoDocumentoCliente = "CC";
-cliente2.documentoCliente = "1016111961";
-cliente2.telefonoCliente = "3507003090";
-cliente2.correoCliente = "sofloza@hotmail.com"
+const cliente2 = new Cliente("Sofia Lozano", "CC", "1016111961", "3507003090", "sofloza@hotmail.com");
+const cuentaSofia = new CuentaCorriente(cliente2, "654321", "002");
 
-const cuentaSofia = new CuentaCorriente();
-cuentaSofia.numeroCuenta = "654321"
-cuentaSofia.agencia = "002"
-cuentaSofia.cliente = cliente2;
 cuentaSofia.depositoCuenta(500);
-cuentaSofia.retiroCuenta(100);
-console.log(cuentaSofia);
+console.log(cuentaSofia.cliente);
 
 cuentaSergio.transferencia(100,cuentaSofia);
 
+console.log(CuentaCorriente.cantidadCuentas);
