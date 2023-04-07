@@ -1,15 +1,29 @@
-export class Cuenta {
-    #cliente;
-    #saldoCuenta;
+import { Cliente } from "./cliente.js";
 
-    constructor(tipo, cliente, numero, agencia, saldoCuenta) {
-        this.tipo = tipo;
-        this.numero = numero;
-        this.agencia = agencia;
-        this.#cliente = cliente;
-        this.#saldoCuenta = saldoCuenta;
+export class CuentaCorriente {
+    #cliente;
+    numeroCuenta;
+    #saldoCuenta;
+    agencia;
+    static cantidadCuentas = 0;
+
+    set cliente(valor) { 
+        if (valor instanceof Cliente){
+            this.#cliente = valor;
+        }
     }
 
+    get cliente() {
+        return this.#cliente;
+    }
+    
+    constructor(cliente, numeroCuenta, agencia){
+        this.cliente = cliente;
+        this.numeroCuenta = numeroCuenta;
+        this.#saldoCuenta = 0;
+        this.agencia = agencia;
+        CuentaCorriente.cantidadCuentas++;
+    }
     depositoCuenta(valor) {
         if (valor > 0){
             this.#saldoCuenta += valor;
@@ -20,16 +34,9 @@ export class Cuenta {
 
     }
     retiroCuenta(valor) {
-        const valorReal = valor;
-        if (this.tipo == "Corriente"){
-            valor = valor * 1.05;
-        } else if (this.tipo == "Ahorros"){
-            valor = valor *1.02;
-        }
-
         if (valor <= this.#saldoCuenta){
             this.#saldoCuenta -= valor;
-            console.log("retiraste "+valorReal+" en tu cuenta corriente, tu saldo actual es de " + this.#saldoCuenta);
+            console.log("retiraste "+valor+" en tu cuenta corriente, tu saldo actual es de " + this.#saldoCuenta);
         } else {
             console.log("saldo insuficiente");
         } 
@@ -43,4 +50,5 @@ export class Cuenta {
         cuentaDestino.depositoCuenta(valor);
         console.log("La transferencia por valor de $"+ valor + " a la cuenta fue exitosa")
     }
+
 }
