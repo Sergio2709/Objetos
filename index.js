@@ -37,5 +37,5 @@ console.log(SistemaAutencaticacion.login(empleado3,'32345'))
 console.log(SistemaAutencaticacion.login(cliente1,'111111'))
 console.log(SistemaAutencaticacion.login(cliente2,'123232'))
 console.log(SistemaAutencaticacion.login(cliente3,'333333'))
-console.log(SistemaAutencaticacion.login(cliente3,'444444'))
+console.log(SistemaAutencaticacion.login(cliente4,'444444'))
 
